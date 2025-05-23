@@ -22,12 +22,12 @@ public class LoginSteps {
 
     driver.manage().window().maximize();
     }
-    @When("user enters username and password")
-    public void user_enters_username_and_password() {
+    @When("^user enters (.*) and (.*)$")
+    public void user_enters_username_and_password(String username, String password) {
     System.out.println("Inside Step- user enters username and password");
     driver.navigate().to("https://www.saucedemo.com/v1/");
-    driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
-    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("secret_sauce");
+    driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
+    driver.findElement(By.xpath("//input[@type='password']")).sendKeys(password);
     }
     @And("clicks on login button")
     public void clicks_on_login_button() {
@@ -37,7 +37,7 @@ public class LoginSteps {
     @Then("user is navigated to the Home page")
     public void user_is_navigated_to_the_home_page() {
     System.out.println("Inside Step- user is navigated to the Home page");
-     driver.getPageSource().contains("Swag Labs1");
+     driver.getPageSource().contains("Products");
      driver.quit();
     }
 }
