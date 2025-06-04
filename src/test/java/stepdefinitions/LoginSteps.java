@@ -1,11 +1,13 @@
 package stepdefinitions;
 
+
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pages.HomePage;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -15,18 +17,15 @@ public class LoginSteps {
 
     WebDriver driver=null;
     LoginPage login;
-
+    HomePage home;
     @Given("user is on login page")
     public void user_is_on_login_page() throws InterruptedException {
-    System.out.println("Inside Step- user is on login page");
+    System.out.println("=== I am Inside the Step- user is on login page===");
     driver=new ChromeDriver();
-    //driver=new FirefoxDriver();
-    //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    //driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 
     driver.manage().window().maximize();
     driver.navigate().to("https://www.saucedemo.com/v1/");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
     }
     @When("^user enters (.*) and (.*)$")
@@ -44,9 +43,9 @@ public class LoginSteps {
     }
     @Then("user is navigated to the Home page")
     public void user_is_navigated_to_the_home_page() {
+        home=new HomePage(driver);
     System.out.println("Inside Step- user is navigated to the Home page");
-     driver.getPageSource().contains("Swag Labs");
-
+    home.isProductDisplayed();
      driver.quit();
     }
 }

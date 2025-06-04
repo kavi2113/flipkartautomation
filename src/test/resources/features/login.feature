@@ -1,3 +1,4 @@
+@smoke
 Feature: Feature to test Login functionality
 
   Scenario Outline: Check login is successful with valid credentials
@@ -10,4 +11,11 @@ Feature: Feature to test Login functionality
     Examples:
     |username       |password    |
     | standard_user |secret_sauce|
-    |locked_out_user|secret_sauce|
+    |problem_user   |secret_sauce|
+
+  @smoke1 @regression
+  Scenario: scenario2
+    Given
+    When
+    And
+    Then
